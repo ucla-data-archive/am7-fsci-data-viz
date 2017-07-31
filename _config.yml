@@ -6,7 +6,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "Data in the Scholarly Communications Lifecycle"
+title: "FSCI-AM7: DataViz in R with `ggplot2`"
 
 # Contact.  This *must* include the protocol: if it's an email
 # address, it must look like "mailto:lessons@software-carpentry.org",
