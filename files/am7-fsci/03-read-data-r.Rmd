@@ -1,0 +1,91 @@
+---
+title: "Reading Data in R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading in Data
+
+One of R’s most powerful features is its ability to deal with tabular data - such as you may already have in a spreadsheet or a CSV file. Let’s start by making a toy dataset in your data/ directory, called feline-data.csv:
+
+We can load this into R via the following:
+
+The read.table function is used for reading in tabular data stored in a text file where the columns of data are separated by punctuation characters such as CSV files (csv = comma-separated values). Tabs and commas are the most common punctuation characters used to separate or delimit data points in csv files. For convenience R provides 2 other versions of read.table. These are: read.csv for files where the data are separated with commas and read.delim for files where the data are separated with tabs. Of these three functions read.csv is the most commonly used. If needed it is possible to override the default delimiting punctuation marks for both read.csv and read.delim.
+
+We can begin exploring our dataset right away, pulling out columns by specifying them using the $ operator:
+
+```{r read-file-nosave}
+read.csv('data/gapminder-FiveYearData.csv') #outputs to screen
+
+```
+
+```{r read-file-save-var}
+gapmind <- read.csv('data/gapminder-FiveYearData.csv') # Saves dataframe as variable (see Environment top right change)
+```
+
+```{r print-gapminder-variable}
+head(gapmind)
+```
+
+```{r dataset-structure}
+str(gapmind) #prints out information about the dataset including the data types (v. important in plotting)
+
+```
+
+* Notice that character columns in the dataframe are convereted to `factors` by default in R on read. 
+* You can turn off this behavior by using a `read.csv("data/gapminder-FiveYearData.csv", **stringsAsFactors = FALSE**)` to the `read.csv`function.
+* TODO
+
+### What about other formats? I have xls, dta, spss
+
+```{r}
+#install.packages('foreign', 'xlsx') #remove the pound in front of this line to install it, if you haven't yet
+library(foreign) #turn it on
+library(xlsx)
+```
+
+```{r read-xlsx}
+read.xlsx('data/gapminder-FiveYearData.xlsx', 1)
+```
+
+### Reading from the Web
+
+```{r read-csv-web}
+read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
+```
+
+### How about a Data Repository?
+
+* You can read from the Web like above with a repository (find the url to the data and copy into R), but many data repositories offer APIs (Application Protocol Interfaces) that let us grab data by other information (dois, authors, organization, etc)
+* R has reposirtory packages for: dataverse, figshare, ICPSR, zenodo, dataone, rentrez, Pew
+* ROpenScience makes a number of repositories available to accss scientific data
+
+**We will focus on dataverse today**
+
+### Let's get some data from dataverse
+
+```{r dataverse-doi}
+#install.packages('dataverse') # we need to install the package 
+library("dataverse")
+get_dataset("doi:10.7910/DVN/GJQNEQ") #we see two datasets that are .tab
+
+```
+
+```{r}
+file_metadata <- get_file_metadata('gapminder-FiveYearData.tab', 'doi:10.7910/DVN/GJQNEQ')
+```
+
+```{r}
+file_metadata
+```
+
+```{r}
+writeBin(get_file("constructionData.tab", "doi:10.7910/DVN/ARKOTI"), 
+         "constructionData.dta")
+writeBin(get_file("PESenergy.csv", "doi:10.7910/DVN/ARKOTI"), 
+         "PESenergy.csv")
+```
+
