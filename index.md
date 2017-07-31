@@ -9,5 +9,5 @@ This is an introduction to creating figures in R using the package `ggplot2`. We
 >
 > 1. Follow the instructions on the [setup page](setup/) to get the tools you need for the workshop.
 > 1. To familiarize yourself with some of the basic syntax and structure of R, take the free online R course from datacamp.com:  <https://www.datacamp.com/>. You can also learn R from within R with a tutorial called [Swirl](http://swirlstats.com/).  Follow the instructions here: <http://swirlstats.com/students.html>.
-> 3. Review [**Introduction to R and RStudio**](https://ucla-data-archive.github.io/am7-fsci-data-viz/01-rstudio-intro/) and [**Project Management With RStudio**] to get a
+> 3. Review [**Introduction to R and RStudio**](https://ucla-data-archive.github.io/am7-fsci-data-viz/01-rstudio-intro/) and [**Project Management With RStudio**](https://ucla-data-archive.github.io/am7-fsci-data-viz/02-project-intro/). These two episodes will give you some introduction to RStudio and project management in RStudio. You can skip over redundant parts in **Introduction to R and RStudio** that introduce R programming covered above.  
 {: .prereq}
