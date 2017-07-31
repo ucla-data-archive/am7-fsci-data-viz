@@ -7,5 +7,7 @@ This is an introduction to creating figures in R using the package `ggplot2`. We
 
 > ## Prerequisites
 >
-> Look at the [setup page](setup/) to get the tools you need. To familiarize yourself with some of the basic R syntax, take the online free R course from datacamp.com <https://www.datacamp.com/>. You can also learn R from within R with a tutorial called [Swirl](http://swirlstats.com/).  Follow the instructions here: <http://swirlstats.com/students.html>.
+> 1. Follow the instructions on the [setup page](setup/) to get the tools you need.
+> 1. To familiarize yourself with some of the basic syntax and structure of R, take the free online R course from datacamp.com:  <https://www.datacamp.com/>. You can also learn R from within R with a tutorial called [Swirl](http://swirlstats.com/).  Follow the instructions here: <http://swirlstats.com/students.html>.
+> 3.
 {: .prereq}
