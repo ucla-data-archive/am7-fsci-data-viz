@@ -168,8 +168,7 @@ ggplot(d2, aes(carat, _____, color = _____)) + geom_point() + theme_gray()
 
 ##Solution
 
-```
-{r answer-ex-1}
+```{r answer-ex-1}
 ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
 ```
 

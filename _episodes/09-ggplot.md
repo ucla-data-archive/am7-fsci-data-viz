@@ -236,10 +236,13 @@ ggplot(d2, aes(carat, _____, color = _____)) + geom_point() + theme_gray()
 
 ##Solution
 
-```
-{r answer-ex-1}
+
+~~~
 ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
-```
+~~~
+{: .r}
+
+<img src="../fig/rmd-09-answer-ex-1-1.png" title="plot of chunk answer-ex-1" alt="plot of chunk answer-ex-1" style="display: block; margin: auto;" />
 
 ## Box plots
 
