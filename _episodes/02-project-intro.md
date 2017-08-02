@@ -1,7 +1,7 @@
 ---
 title: "Project Management With RStudio"
-teaching: 20
-exercises: 10
+teaching: 0
+exercises: 0
 questions:
 - "How can I manage my projects in R?"
 objectives:
@@ -129,7 +129,7 @@ get shared between projects.
 > 2. Load the library
 > 3. Initialise the project:
 >
-> 
+>
 > ~~~
 > install.packages("ProjectTemplate")
 > library("ProjectTemplate")
@@ -193,43 +193,43 @@ Now we have a good directory structure we will now place/save the data file in t
 > > ## Solution to Challenge 2
 > >
 > > By running these commands in the shell:
-> > 
+> >
 > > ~~~
 > > ls -lh data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .r}
-> > 
-> > 
-> > 
-> > 
+> >
+> >
+> >
+> >
 > > ~~~
 > > -rw-rw-r-- 1 tim tim 80K Jul 22 20:07 data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .output}
 > > The file size is 80K.
-> > 
+> >
 > > ~~~
 > > wc -l data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .r}
-> > 
-> > 
-> > 
-> > 
+> >
+> >
+> >
+> >
 > > ~~~
 > > 1705 data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .output}
 > > There are 1705 lines. The data looks like:
-> > 
+> >
 > > ~~~
 > > head data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .r}
-> > 
-> > 
-> > 
-> > 
+> >
+> >
+> >
+> >
 > > ~~~
 > > country,year,pop,continent,lifeExp,gdpPercap
 > > Afghanistan,1952,8425333,Asia,28.801,779.4453145

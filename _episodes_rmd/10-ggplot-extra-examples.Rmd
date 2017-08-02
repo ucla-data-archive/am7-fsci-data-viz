@@ -1,7 +1,9 @@
 ---
 title: "Plotting with GGPLOT2 - Extra examples"
 author: "Tim Dennis & Reid Otsuji"
-date: "January 8, 2016"
+teaching: 0
+exercises: 0
+date: "August 2, 2017"
 output:
   html_document:
     toc: yes
