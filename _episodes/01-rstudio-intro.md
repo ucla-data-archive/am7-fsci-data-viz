@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R and RStudio"
-teaching: 0
-exercises: 0
+teaching: 45
+exercises: 10
 questions:
 - "How to find your way around RStudio?"
 - "How to interact with R?"
@@ -623,23 +623,23 @@ ls
 
 
 ~~~
-function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
-    pattern, sorted = TRUE)
+function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+    pattern, sorted = TRUE) 
 {
     if (!missing(name)) {
         pos <- tryCatch(name, error = function(e) e)
         if (inherits(pos, "error")) {
             name <- substitute(name)
-            if (!is.character(name))
+            if (!is.character(name)) 
                 name <- deparse(name)
-            warning(gettextf("%s converted to character string",
+            warning(gettextf("%s converted to character string", 
                 sQuote(name)), domain = NA)
             pos <- name
         }
     }
     all.names <- .Internal(ls(envir, all.names, sorted))
     if (!missing(pattern)) {
-        if ((ll <- length(grep("[", pattern, fixed = TRUE))) &&
+        if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
             ll != length(grep("]", pattern, fixed = TRUE))) {
             if (pattern == "[") {
                 pattern <- "\\["
@@ -654,7 +654,7 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x55b91cf19060>
+<bytecode: 0x55c4d2158060>
 <environment: namespace:base>
 ~~~
 {: .output}
@@ -728,7 +728,7 @@ network). R and RStudio have functionality for managing packages:
 > ## Challenge 1
 >
 > Which of the following are valid R variable names?
->
+> 
 > ~~~
 > min_height
 > max.height
@@ -744,7 +744,7 @@ network). R and RStudio have functionality for managing packages:
 > > ## Solution to challenge 1
 > >
 > > The following can be used as R variables:
-> >
+> > 
 > > ~~~
 > > min_height
 > > max.height
@@ -754,14 +754,14 @@ network). R and RStudio have functionality for managing packages:
 > > {: .r}
 > >
 > > The following creates a hidden variable:
-> >
+> > 
 > > ~~~
 > > .mass
 > > ~~~
 > > {: .r}
 > >
 > > The following will not be able to be used to create a variable
-> >
+> > 
 > > ~~~
 > > _age
 > > min-length
@@ -776,7 +776,7 @@ network). R and RStudio have functionality for managing packages:
 > What will be the value of each  variable  after each
 > statement in the following program?
 >
->
+> 
 > ~~~
 > mass <- 47.5
 > age <- 122
@@ -787,21 +787,21 @@ network). R and RStudio have functionality for managing packages:
 >
 > > ## Solution to challenge 2
 > >
-> >
+> > 
 > > ~~~
 > > mass <- 47.5
 > > ~~~
 > > {: .r}
 > > This will give a value of 47.5 for the variable mass
 > >
-> >
+> > 
 > > ~~~
 > > age <- 122
 > > ~~~
 > > {: .r}
 > > This will give a value of 122 for the variable age
 > >
-> >
+> > 
 > > ~~~
 > > mass <- mass * 2.3
 > > ~~~
@@ -809,7 +809,7 @@ network). R and RStudio have functionality for managing packages:
 > > This will multiply the existing value of 47.5 by 2.3 to give a new value of
 > > 109.25 to the variable mass.
 > >
-> >
+> > 
 > > ~~~
 > > age <- age - 20
 > > ~~~
@@ -828,14 +828,14 @@ network). R and RStudio have functionality for managing packages:
 > > ## Solution to challenge 3
 > >
 > > One way of answering this question in R is to use the `>` to set up the following:
-> >
+> > 
 > > ~~~
 > > mass > age
 > > ~~~
 > > {: .r}
-> >
-> >
-> >
+> > 
+> > 
+> > 
 > > ~~~
 > > [1] TRUE
 > > ~~~
@@ -853,7 +853,7 @@ network). R and RStudio have functionality for managing packages:
 > > ## Solution to challenge 4
 > >
 > > We can use the `rm` command to accomplish this task
-> >
+> > 
 > > ~~~
 > > rm(age, mass)
 > > ~~~
@@ -868,7 +868,7 @@ network). R and RStudio have functionality for managing packages:
 > > ## Solution to challenge 5
 > >
 > > We can use the `install.packages()` command to install the required packages.
-> >
+> > 
 > > ~~~
 > > install.packages("ggplot2")
 > > install.packages("plyr")

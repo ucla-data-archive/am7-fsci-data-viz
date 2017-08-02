@@ -12,18 +12,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Reading in Data
 
-One of R’s most powerful features is its ability to deal with tabular data - such as you may already have in a spreadsheet or a CSV file. Let’s start by making a toy dataset in your data/ directory, called feline-data.csv:
+One of R’s most powerful features is its ability to deal with tabular data - such as you may already have in a spreadsheet or a CSV file.
 
 We can load this into R via the following:
 
 The read.table function is used for reading in tabular data stored in a text file where the columns of data are separated by punctuation characters such as CSV files (csv = comma-separated values). Tabs and commas are the most common punctuation characters used to separate or delimit data points in csv files. For convenience R provides 2 other versions of read.table. These are: read.csv for files where the data are separated with commas and read.delim for files where the data are separated with tabs. Of these three functions read.csv is the most commonly used. If needed it is possible to override the default delimiting punctuation marks for both read.csv and read.delim.
 
-We can begin exploring our dataset right away, pulling out columns by specifying them using the $ operator:
+Let's read existing data on our file system:
 
 ```{r read-file-nosave}
 head(read.csv('data/gapminder-FiveYearData.csv')) #outputs to screen just top of dataframe
 
 ```
+Now let's save the data as a variable (or object in R).
 
 ```{r read-file-save-var}
 gapmind <- read.csv('data/gapminder-FiveYearData.csv') # Saves dataframe as variable (see Environment top right change)
@@ -38,7 +39,7 @@ str(gapmind) #prints out information about the dataset including the data types 
 
 ```
 
-* Notice that character columns in the dataframe are convereted to `factors` by default in R on read.
+* Notice that character columns in the dataframe are converted to `factors` by default in R on read.
 * You can turn off this behavior by using a `read.csv("data/gapminder-FiveYearData.csv", **stringsAsFactors = FALSE**)` to the `read.csv`function.
 
 ### What about other formats? I have xls, dta, spss
@@ -55,14 +56,16 @@ read.xlsx('data/gapminder-FiveYearData.xlsx', 1)
 
 ### Reading from the Web
 
+We can read directly from the web as well:
+
 ```{r read-csv-web}
 read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
 ```
 
 ### How about a Data Repository?
 
-* You can read from the Web like above with a repository (find the url to the data and copy into R), but many data repositories offer APIs (Application Protocol Interfaces) that let us grab data by other information (dois, authors, organization, etc)
-* R has reposirtory packages for: [dataverse](https://cran.r-project.org/web/packages/dataverse/index.html), [figshare](https://cran.r-project.org/web/packages/rfigshare/index.html), [ICPSR](https://cran.r-project.org/web/packages/icpsrdata/index.html), [dataone](https://cran.r-project.org/web/packages/dataone/index.html), rentrez, Pew
+* You can read from the Web like above with a repository (find the url to the data and copy into R), but many data repositories also offer APIs (Application Protocol Interfaces) that let us grab data by other information (dois, authors, organization, etc)
+* R has repository packages for: [dataverse](https://cran.r-project.org/web/packages/dataverse/index.html), [figshare](https://cran.r-project.org/web/packages/rfigshare/index.html), [ICPSR](https://cran.r-project.org/web/packages/icpsrdata/index.html), [dataone](https://cran.r-project.org/web/packages/dataone/index.html), rentrez, Pew
 * [ROpenScience](https://ropensci.org/) makes a number of repositories available to access scientific data
 
 **We will focus on dataverse today**

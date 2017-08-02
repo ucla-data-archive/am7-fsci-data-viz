@@ -70,7 +70,7 @@ library(tidyverse)
 
 * GGPLOT2 developed by Hadley Wickham based on the *grammar-of-graphics*
 * **Grammar of graphics** consists of a **dataset**, **coordinate system**, and **geoms** -- the visual representation of data points.
-* Think about figure in layers:  like you would in Photoshop, illustrator or Inkscape.
+* Think about a figure in layers:  like you would in Photoshop, illustrator or Inkscape.
 
 ## Data Viz
 
@@ -98,14 +98,15 @@ This famous (Fisher's or Anderson's) iris data set gives the measurements in cen
 
 
 ```{r head_iris}
-library(ggplot2)
+#install.packages('tidyverse')
+library(tidyverse) #a package that installs multiple packages
 head(iris)
 ```
 
 WE can use the `data()` function to show the available built-in data sets in R.
 
 
-```{r show-datasets}
+```{r show-datasets, eval=F}
 data()
 ```
 
@@ -116,11 +117,13 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
 
 **Basic structure**
 
-```{r}
+```{r iris-points}
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
+```
+```{r iris-saved-object}
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
 myplot + geom_point()
-```
+
 
 * Specify the **data and variables** inside the `ggplot` function.
 * Anything else that goes in here becomes a global setting.

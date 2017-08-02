@@ -93,7 +93,7 @@ lag():    dplyr, stats
 
 * GGPLOT2 developed by Hadley Wickham based on the *grammar-of-graphics*
 * **Grammar of graphics** consists of a **dataset**, **coordinate system**, and **geoms** -- the visual representation of data points.
-* Think about figure in layers:  like you would in Photoshop, illustrator or Inkscape.
+* Think about a figure in layers:  like you would in Photoshop, illustrator or Inkscape.
 
 ## Data Viz
 
@@ -122,7 +122,8 @@ This famous (Fisher's or Anderson's) iris data set gives the measurements in cen
 
 
 ~~~
-library(ggplot2)
+#install.packages('tidyverse')
+library(tidyverse) #a package that installs multiple packages
 head(iris)
 ~~~
 {: .r}
@@ -166,22 +167,30 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-iris-points-1.png" title="plot of chunk iris-points" alt="plot of chunk iris-points" style="display: block; margin: auto;" />
 
 ~~~
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
 myplot + geom_point()
-~~~
-{: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 * Specify the **data and variables** inside the `ggplot` function.
 * Anything else that goes in here becomes a global setting.
 * Then add layers of geometric objects, statistical models, and panels.
 
 **Increase size of points**
+~~~
+{: .r}
 
+
+
+~~~
+Error: <text>:5:1: unexpected '*'
+4: 
+5: *
+   ^
+~~~
+{: .error}
 
 ~~~
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
@@ -334,7 +343,7 @@ ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 * used geom_line instead of geom_point
 * added a **by** *aesthetic* to get a line per country and color by continent
@@ -444,7 +453,7 @@ ggplot(df, aes(Species, value, fill = variable)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 
 ### Exercise 3
@@ -478,7 +487,7 @@ ggplot(faithful, aes(waiting)) + geom_density()
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 
 ~~~
@@ -487,7 +496,7 @@ ggplot(faithful, aes(waiting)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 
 
@@ -497,7 +506,7 @@ ggplot(faithful, aes(waiting)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 ## Colors
 
