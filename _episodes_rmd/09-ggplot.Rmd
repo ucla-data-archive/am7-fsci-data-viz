@@ -440,15 +440,22 @@ of the gapminder dataset.
 
 ## Modifying text
 
-* would like to add text to elements in the graph
+* You would like to add text to elements in the graph
 * do this by adding a few more layers:
+   * `labs()` to add title, x and y
    * **theme** layer controls axis text & text size
    * **scales** layer to change legend title
 
 ```{r theme}
 ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +
   geom_line() + facet_wrap( ~ country) +
-  xlab("Year") + ylab("Life expectancy") + ggtitle("Figure 1") +
+  labs(
+    title="Life Expectancy by Year (1950-2000)",
+    subtitle="Figure 1",
+    caption="Data from gapminder.org",
+    x = "Year",
+    y = "Life Expectancy"
+    ) +
   scale_colour_discrete(name="Continent") +
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
 ```
