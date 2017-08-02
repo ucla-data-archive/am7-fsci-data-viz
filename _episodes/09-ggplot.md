@@ -226,7 +226,7 @@ d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]
 
 Knowing what you know about ggplot, can you fill in the blanks to make this figure from `d2`:
 
-![Diamonds](fig/rmd-09-answer-ex-1-1.png)
+![Diamonds](../fig/rmd-09-answer-ex-1-1.png)
 
 
 ~~~
@@ -235,6 +235,7 @@ ggplot(d2, aes(carat, _____, color = _____)) + geom_point() + theme_gray()
 {: .r}
 
 ##Solution
+
 ```
 {r answer-ex-1}
 ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
