@@ -1,16 +1,27 @@
 ---
 title: "Plotting with GGPLOT2"
 author: "Tim Dennis & Reid Otsuji"
-date: "January 8, 2016"
+teaching: 60
+exercises: 20
+date: "August 1, 2017"
 output:
   html_document:
     toc: yes
+questions:
+    - "How can I create publication-quality graphics in R?"
+objectives:
+    - "To be able to use ggplot2 to generate publication quality graphics."
+    - "To understand the basic grammar of graphics, including the aesthetics and geometry layers, adding statistics, transforming scales, and coloring or panelling by groups."
+keypoints:
+    - "Use `ggplot2` to create plots."
+    - "Think about graphics in layers: aesthetics, geometry, statistics, scale transformation, and grouping."
+source: Rmd
 ---
 
 
 
 >First part of this notebook based on Karthik Ram's [GGPLOT2 Lecture](https://github.com/karthik/ggplot-lecture) ([CC-By 2.0](https://creativecommons.org/licenses/by/2.0/))
->Also includes 
+>Also includes
 
 GOALS: Learners should be able to use ggplot2 to generate publication quality graphics and understand and use the basics of the grammar of graphics.
 

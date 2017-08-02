@@ -1,5 +1,7 @@
 ---
 title: "Reading Data in R"
+teaching: 20
+exercises: 0
 output: html_document
 ---
 
