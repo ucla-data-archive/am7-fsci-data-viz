@@ -49,4 +49,4 @@ And one more:
 install.packages('xlsx')
 ```
 
-This might fail b/c `xlsx` depends on a package called rJava, which also requires your system to run a JDK (Java Development Kit). Don't worry if you can't get it installed for class, you can use example code later -- I put the exmaple in more for demonstration. 
+This might fail b/c `xlsx` depends on a package called rJava, which also requires your system to run a JDK (Java Development Kit). Don't worry if you can't get it installed for class, you can use example code later -- I put the exmaple in more for demonstration.
