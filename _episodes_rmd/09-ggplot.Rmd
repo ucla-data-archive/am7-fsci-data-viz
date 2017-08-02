@@ -123,7 +123,7 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 ```{r iris-saved-object}
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
 myplot + geom_point()
-
+```
 
 * Specify the **data and variables** inside the `ggplot` function.
 * Anything else that goes in here becomes a global setting.

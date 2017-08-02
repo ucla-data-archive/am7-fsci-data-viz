@@ -172,25 +172,17 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 ~~~
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
 myplot + geom_point()
+~~~
+{: .r}
 
+<img src="../fig/rmd-09-iris-saved-object-1.png" title="plot of chunk iris-saved-object" alt="plot of chunk iris-saved-object" style="display: block; margin: auto;" />
 
 * Specify the **data and variables** inside the `ggplot` function.
 * Anything else that goes in here becomes a global setting.
 * Then add layers of geometric objects, statistical models, and panels.
 
 **Increase size of points**
-~~~
-{: .r}
 
-
-
-~~~
-Error: <text>:5:1: unexpected '*'
-4: 
-5: *
-   ^
-~~~
-{: .error}
 
 ~~~
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
