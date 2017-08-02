@@ -5,6 +5,9 @@ date: "January 8, 2016"
 output:
   html_document:
     toc: yes
+questions:
+    - "Extra ggplot examples"
+source: Rmd
 ---
 
 

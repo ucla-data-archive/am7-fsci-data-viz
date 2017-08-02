@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#library(tidyverse)
 ```
 
 ## Reading in Data
@@ -72,7 +73,6 @@ read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pa
 #install.packages('dataverse') # we need to install the package
 library("dataverse")
 get_dataset("doi:10.7910/DVN/GJQNEQ") #we see two datasets that are .tab
-
 ```
 
 * We can pull the file metadata.
@@ -89,7 +89,7 @@ file_metadata
 * Finally, we can use the function `writeBin` to write the `gapminder` data to our local file system.
 
 ```{r write-dataverse-data}
-writeBin(get_file("'gapminder-FiveYearData.tab", "doi:10.7910/DVN/GJQNEQ"),
+writeBin(get_file("gapminder-FiveYearData.tab", "doi:10.7910/DVN/GJQNEQ"),
          "data/gapminder-FiveYearData-dvn.csv")
 ```
 

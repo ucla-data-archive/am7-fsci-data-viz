@@ -30,17 +30,10 @@ gapminder <- read.csv("data/gapminder-FiveYearData.csv", header = TRUE)
 
 GOALS: Learners should be able to use ggplot2 to generate publication quality graphics and understand and use the basics of the grammar of graphics.
 
-```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("09-")
-# Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header = TRUE)
-```
+Let's load the tidyverse using the `library()` function. If you haven't installed `tidyverse`, install it now:
 
-
-```{r}
-#install.packages('ggplot2')
-#library(ggplot2)
+```{r setup}
+library(tidyverse)
 ```
 
 >## KEY TERMS FOR DATA TYPES
@@ -170,12 +163,11 @@ Knowing what you know about ggplot, can you fill in the blanks to make this figu
 ggplot(d2, aes(carat, _____, color = _____)) + geom_point() + theme_gray()
 ```
 
->>##Solution
->>```{r answer-ex-1}
->>ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
->>```
->>
-> {. :solution}
+##Solution
+```
+{r answer-ex-1}
+ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
+```
 
 ## Box plots
 
@@ -253,7 +245,6 @@ ggplot(iris, aes(Species, Sepal.Length)) +
   geom_bar(stat = "identity")
 ```
 
-
 The heights of the bars commonly represent one of two things: either a **count of cases in each group**, or the values in a column of the data frame. By default, geom_bar uses stat="bin". This makes the height of each bar equal to the number of cases in each group, and it is incompatible with mapping values to the y aesthetic. If you want the heights of the bars to represent values in the data, use stat="identity" and map a value to the y aesthetic.
 
 ## Dplyr and Tidyr
@@ -289,12 +280,22 @@ ggplot(df, aes(Species, value, fill = variable)) +
 
 
 ### Exercise 3
-Using the d2 dataset you created earlier, generate this plot below. Take a quick look at the data first to see if it needs to be binned
+Using the d2 dataset you created earlier, position the bars side by side below like you did above. Fill in the blank:
 
-```{r exercise-3ans}
-d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]
+
+**fill in the blank**
+
+```{r exercise-3ans-adjacent, eval=F}
+d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]#we will create the `d2` again for convenience
 ggplot(d2, aes(clarity, fill = cut)) +
-  geom_bar(position = "dodge")
+  geom_bar(____________)
+```
+* What if you wanted to stack them instead?(hint: the position name is 'stacked')
+*
+```{r exercise-3ans-stack, eval=F}
+d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]#we will create the `d2` again for convenience
+ggplot(d2, aes(clarity, fill = cut)) +
+  geom_bar(____________)
 ```
 
 ## Density Plots
@@ -390,9 +391,34 @@ pwd <- ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
 
 ### Challenge 4a
 
-<http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-3#challenge-4a>
+Modify the color and size of the points on the point layer in the previous example.
+
+Hint: do not use the `aes` function.
+
+**fill in blank and run**
+
+```{r ch4a-blank, eval=F}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(____, ____) + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+```
+
+## Solution to challenge 4a
+
+Modify the color and size of the points on the point layer in the previous
+ example.
+
+Hint: do not use the `aes` function.
+
+```{r ch4a-sol}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(size=3, color="orange") + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+```
 
 ### Challenge 4b
+
+Try challenge 4B on the Software Carpentry site:
 
 <http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-3#challenge-4b>
 
@@ -427,7 +453,35 @@ ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
 ```
 
-<http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-5>
+## Challenge 5
+
+Create a density plot of GDP per capita, filled by continent.
+
+Advanced:
+- Transform the x axis to better visualise the data spread.
+- Add a facet layer to panel the density plots by year.
+
+Create a density plot of GDP per capita, filled by continent.
+
+**Fill in blank**
+
+```{r ch5-blank, eval=F}
+ggplot(data = gapminder, aes(x = _____, fill=_____)) +
+  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x____()
+``
+
+## Solution to challenge 5
+
+Create a density plot of GDP per capita, filled by continent.
+
+Advanced:
+- Transform the x axis to better visualise the data spread.
+- Add a facet layer to panel the density plots by year.
+
+```{r ch5-sol}
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+ geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+``
 
 ## Themes
 
@@ -438,14 +492,14 @@ Themes are a great way to define custom plots.
 **see ?theme() for more options**
 
 
-```{r}
+```{r theme-setting}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
+  geom_point(size = 1.2, shape = 16) +
+  facet_wrap( ~ Species) +
+    theme(legend.key = element_rect(fill = NA),
+    legend.position = "bottom",
+    strip.background = element_rect(fill = NA),
+    axis.title.y = element_text(angle = 0))
 ```
 
 **And for even more fun:**
@@ -461,30 +515,30 @@ library(ggthemes)
  + `theme_wsj()`
  + `theme_solarized()`
 
-```{r}
+```{r theme-solarized}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme_solarized() +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
+  geom_point(size = 1.2, shape = 16) +
+  facet_wrap( ~ Species) +
+  theme_solarized() +
+  theme(legend.key = element_rect(fill = NA),
+    legend.position = "bottom",
+    strip.background = element_rect(fill = NA),
+    axis.title.y = element_text(angle = 0))
 ```
 
 ## How to save your plots
 
-```{r eval=FALSE}
+```{r saving-plot, eval=FALSE}
 ggsave('~/path/to/figure/filename.png')
 ggsave(plot1, file = "~/path/to/figure/filename.png")
 ```
 
-```{r eval=FALSE}
+```{r save-path-dim, eval=FALSE}
 ggsave(file = "/path/to/figure/filename.png", width = 6,
 height =4)
 ```
 
-```{r eval=FALSE}
+```{r save-formats, eval=FALSE}
 ggsave(file = "/path/to/figure/filename.eps")
 ggsave(file = "/path/to/figure/filename.jpg")
 ggsave(file = "/path/to/figure/filename.pdf")

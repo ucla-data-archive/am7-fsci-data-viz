@@ -3569,12 +3569,8 @@ file_metadata
 
 
 ```r
-writeBin(get_file("'gapminder-FiveYearData.tab", "doi:10.7910/DVN/GJQNEQ"),
+writeBin(get_file("gapminder-FiveYearData.tab", "doi:10.7910/DVN/GJQNEQ"),
          "data/gapminder-FiveYearData-dvn.csv")
-```
-
-```
-## Error in get_fileid.character(dataset, file, key = key, server = server, : File not found
 ```
 
 You can also query Dataverse on other criteria and even publish a dataset from within R (you'll have to get a API key for that).

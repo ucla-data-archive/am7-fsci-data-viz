@@ -1,5 +1,5 @@
 ---
-title: Creating Publication-Quality Graphics-Full SWC Lesson
+title: Creating Publication-Quality Graphics-Full SWC Episode
 teaching: 60
 exercises: 20
 questions:

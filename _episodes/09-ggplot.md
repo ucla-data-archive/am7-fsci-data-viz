@@ -25,15 +25,39 @@ source: Rmd
 
 GOALS: Learners should be able to use ggplot2 to generate publication quality graphics and understand and use the basics of the grammar of graphics.
 
-
-
+Let's load the tidyverse using the `library()` function. If you haven't installed `tidyverse`, install it now:
 
 
 ~~~
-#install.packages('ggplot2')
-#library(ggplot2)
+library(tidyverse)
 ~~~
 {: .r}
+
+
+
+~~~
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: readr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr
+~~~
+{: .output}
+
+
+
+~~~
+Conflicts with tidy packages ----------------------------------------------
+~~~
+{: .output}
+
+
+
+~~~
+filter(): dplyr, stats
+lag():    dplyr, stats
+~~~
+{: .output}
 
 >## KEY TERMS FOR DATA TYPES
 >**Continuous**
@@ -132,7 +156,7 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 **Basic structure**
 
@@ -142,7 +166,7 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 ~~~
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
@@ -150,7 +174,7 @@ myplot + geom_point()
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-3-2.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 * Specify the **data and variables** inside the `ggplot` function.
 * Anything else that goes in here becomes a global setting.
@@ -209,16 +233,11 @@ ggplot(d2, aes(carat, _____, color = _____)) + geom_point() + theme_gray()
 ~~~
 {: .r}
 
->>##Solution
->>
->>~~~
->>ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
->>~~~
->>{: .r}
->>
->><img src="../fig/rmd-09-answer-ex-1-1.png" title="plot of chunk answer-ex-1" alt="plot of chunk answer-ex-1" style="display: block; margin: auto;" />
->>
-> {. :solution}
+##Solution
+```
+{r answer-ex-1}
+ggplot(d2, aes(carat, price, color = color)) + geom_point() + theme_gray()
+```
 
 ## Box plots
 
@@ -227,6 +246,29 @@ See `?geom_boxplot` for list of options
 
 ~~~
 library(MASS)
+~~~
+{: .r}
+
+
+
+~~~
+
+Attaching package: 'MASS'
+~~~
+{: .output}
+
+
+
+~~~
+The following object is masked from 'package:dplyr':
+
+    select
+~~~
+{: .output}
+
+
+
+~~~
 head(birthwt)
 ~~~
 {: .r}
@@ -292,7 +334,7 @@ ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 * used geom_line instead of geom_point
 * added a **by** *aesthetic* to get a line per country and color by continent
@@ -339,7 +381,6 @@ ggplot(iris, aes(Species, Sepal.Length)) +
 
 <img src="../fig/rmd-09-barplot-1.png" title="plot of chunk barplot" alt="plot of chunk barplot" style="display: block; margin: auto;" />
 
-
 The heights of the bars commonly represent one of two things: either a **count of cases in each group**, or the values in a column of the data frame. By default, geom_bar uses stat="bin". This makes the height of each bar equal to the number of cases in each group, and it is incompatible with mapping values to the y aesthetic. If you want the heights of the bars to represent values in the data, use stat="identity" and map a value to the y aesthetic.
 
 ## Dplyr and Tidyr
@@ -382,13 +423,6 @@ df <- gather(iris, variable, value, -Species )
 {: .r}
 
 
-
-~~~
-Error in eval(expr, envir, enclos): could not find function "gather"
-~~~
-{: .error}
-
-
 ~~~
 df[1:2, ]
 ~~~
@@ -397,9 +431,11 @@ df[1:2, ]
 
 
 ~~~
-Error in df[1:2, ]: object of type 'closure' is not subsettable
+  Species     variable value
+1  setosa Sepal.Length   5.1
+2  setosa Sepal.Length   4.9
 ~~~
-{: .error}
+{: .output}
 
 
 ~~~
@@ -408,28 +444,31 @@ ggplot(df, aes(Species, value, fill = variable)) +
 ~~~
 {: .r}
 
-
-
-~~~
-Error in if (is.waive(data) || empty(data)) return(cbind(data, PANEL = integer(0))): missing value where TRUE/FALSE needed
-~~~
-{: .error}
-
-<img src="../fig/rmd-09-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 
 ### Exercise 3
-Using the d2 dataset you created earlier, generate this plot below. Take a quick look at the data first to see if it needs to be binned
+Using the d2 dataset you created earlier, position the bars side by side below like you did above. Fill in the blank:
+
+
+**fill in the blank**
 
 
 ~~~
-d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]
+d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]#we will create the `d2` again for convenience
 ggplot(d2, aes(clarity, fill = cut)) +
-  geom_bar(position = "dodge")
+  geom_bar(____________)
 ~~~
 {: .r}
+* What if you wanted to stack them instead?(hint: the position name is 'stacked')
+*
 
-<img src="../fig/rmd-09-exercise-3ans-1.png" title="plot of chunk exercise-3ans" alt="plot of chunk exercise-3ans" style="display: block; margin: auto;" />
+~~~
+d2 <- diamonds[sample(1:dim(diamonds)[1], 1000), ]#we will create the `d2` again for convenience
+ggplot(d2, aes(clarity, fill = cut)) +
+  geom_bar(____________)
+~~~
+{: .r}
 
 ## Density Plots
 
@@ -439,7 +478,7 @@ ggplot(faithful, aes(waiting)) + geom_density()
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 
 ~~~
@@ -448,7 +487,7 @@ ggplot(faithful, aes(waiting)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
 
 
 
@@ -458,7 +497,7 @@ ggplot(faithful, aes(waiting)) +
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 ## Colors
 
@@ -489,13 +528,6 @@ ggplot(df, aes(Species, value, fill = variable)) +
   scale_fill_brewer(palette = "Set1")
 ~~~
 {: .r}
-
-
-
-~~~
-Error in if (is.waive(data) || empty(data)) return(cbind(data, PANEL = integer(0))): missing value where TRUE/FALSE needed
-~~~
-{: .error}
 
 <img src="../fig/rmd-09-brewer-1.png" title="plot of chunk brewer" alt="plot of chunk brewer" style="display: block; margin: auto;" />
 
@@ -571,9 +603,40 @@ pwd <- ggplot(data = gapminder, aes(x = lifeExp, y = gdpPercap)) +
 
 ### Challenge 4a
 
-<http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-3#challenge-4a>
+Modify the color and size of the points on the point layer in the previous example.
+
+Hint: do not use the `aes` function.
+
+**fill in blank and run**
+
+
+~~~
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(____, ____) + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+~~~
+{: .r}
+
+## Solution to challenge 4a
+
+Modify the color and size of the points on the point layer in the previous
+ example.
+
+Hint: do not use the `aes` function.
+
+
+~~~
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(size=3, color="orange") + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+~~~
+{: .r}
+
+<img src="../fig/rmd-09-ch4a-sol-1.png" title="plot of chunk ch4a-sol" alt="plot of chunk ch4a-sol" style="display: block; margin: auto;" />
 
 ### Challenge 4b
+
+Try challenge 4B on the Software Carpentry site:
 
 <http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-3#challenge-4b>
 
@@ -616,7 +679,38 @@ ggplot(data = az.countries, aes(x = year, y = lifeExp, color=continent)) +
 
 <img src="../fig/rmd-09-theme-1.png" title="plot of chunk theme" alt="plot of chunk theme" style="display: block; margin: auto;" />
 
-<http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2#challenge-5>
+## Challenge 5
+
+Create a density plot of GDP per capita, filled by continent.
+
+Advanced:
+- Transform the x axis to better visualise the data spread.
+- Add a facet layer to panel the density plots by year.
+
+Create a density plot of GDP per capita, filled by continent.
+
+**Fill in blank**
+
+
+~~~
+ggplot(data = gapminder, aes(x = _____, fill=_____)) +
+  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x____()
+``
+
+## Solution to challenge 5
+
+Create a density plot of GDP per capita, filled by continent.
+
+Advanced:
+- Transform the x axis to better visualise the data spread.
+- Add a facet layer to panel the density plots by year.
+~~~
+{: .r}
+
+~~~
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+ geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+``
 
 ## Themes
 
@@ -626,20 +720,28 @@ Themes are a great way to define custom plots.
 
 **see ?theme() for more options**
 
-
-
-~~~
-ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
+
+
+~~~
+Error: attempt to use zero-length variable name
+~~~
+{: .error}
+
+~~~
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point(size = 1.2, shape = 16) +
+  facet_wrap( ~ Species) +
+    theme(legend.key = element_rect(fill = NA),
+    legend.position = "bottom",
+    strip.background = element_rect(fill = NA),
+    axis.title.y = element_text(angle = 0))
+~~~
+{: .r}
+
+<img src="../fig/rmd-09-theme-setting-1.png" title="plot of chunk theme-setting" alt="plot of chunk theme-setting" style="display: block; margin: auto;" />
 
 **And for even more fun:**
 
@@ -659,17 +761,17 @@ library(ggthemes)
 
 ~~~
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme_solarized() +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
+  geom_point(size = 1.2, shape = 16) +
+  facet_wrap( ~ Species) +
+  theme_solarized() +
+  theme(legend.key = element_rect(fill = NA),
+    legend.position = "bottom",
+    strip.background = element_rect(fill = NA),
+    axis.title.y = element_text(angle = 0))
 ~~~
 {: .r}
 
-<img src="../fig/rmd-09-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" style="display: block; margin: auto;" />
+<img src="../fig/rmd-09-theme-solarized-1.png" title="plot of chunk theme-solarized" alt="plot of chunk theme-solarized" style="display: block; margin: auto;" />
 
 ## How to save your plots
 
